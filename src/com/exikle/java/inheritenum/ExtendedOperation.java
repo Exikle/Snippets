@@ -1,4 +1,4 @@
-package com.exikle.java.enum_inheritance;
+package com.exikle.java.inheritenum;
 
 // Emulated extension enum
 public enum ExtendedOperation implements Operation {
