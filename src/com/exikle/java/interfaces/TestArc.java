@@ -23,6 +23,7 @@ public class TestArc {
 
 	public TestArc() {
 		EventQueue.invokeLater(new Runnable() {
+
 			@Override
 			public void run() {
 				try {
@@ -54,6 +55,7 @@ public class TestArc {
 		});
 	}
 
+	@SuppressWarnings("serial")
 	public class TestPane extends JPanel {
 
 		public TestPane() {
@@ -75,11 +77,13 @@ public class TestArc {
 			int y = (getHeight() - radius) / 2;
 
 			final Color ICE_BLUE = new Color(16, 135, 232);
-			RadialGradientPaint rgp = new RadialGradientPaint(new Point(
-					getWidth() / 2, getHeight() / 2), radius, new float[] {
-					0.2f, 1f }, new Color[] { Color.WHITE, ICE_BLUE });
+			RadialGradientPaint rgp = new RadialGradientPaint(
+					new Point(getWidth() / 2, getHeight() / 2),
+					radius, new float[] { 0.2f, 1f }, new Color[] {
+							Color.WHITE, ICE_BLUE });
 			g2d.setPaint(rgp);
-			g2d.fill(new Arc2D.Float(x, y, radius, radius, 0, 360, Arc2D.PIE));
+			g2d.fill(new Arc2D.Float(x, y, radius, radius, 0, 360,
+					Arc2D.PIE));
 			g2d.dispose();
 		}
 

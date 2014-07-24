@@ -91,16 +91,13 @@ public class RunCalculator extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == calcBtn) {
+		if (e.getSource() == calcBtn)
 			calculateMoneyMade();
-		}
 	}
 
 	private void calculateMoneyMade() {
 		Double factorOne = Double.parseDouble(inDecOne.getText());
 		Double factorTwo = Double.parseDouble(inDecTwo.getText());
-
-		calcMaxBid();
 
 		Double betOne = Double.parseDouble(inMonOne.getText());
 		Double betTwo = Double.parseDouble(inMonTwo.getText());
@@ -116,18 +113,7 @@ public class RunCalculator extends JFrame implements ActionListener {
 	}
 
 	boolean checkLoss(double teamOne, double teamTwo) {
-		if (teamOne - teamTwo == 0)
-			return false;
-		else
-			return true;
-
-	}
-
-	private void calcMaxBid() {
-		Double factorOne = Double.parseDouble(inDecOne.getText());
-		Double factorTwo = Double.parseDouble(inDecTwo.getText());
-
-		// Double
+		return (teamOne - teamTwo == 0) ? false : true;
 	}
 
 	/**

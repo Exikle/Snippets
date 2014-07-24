@@ -1,4 +1,4 @@
-package com.exikle.java.hangman;
+package com.exikle.java.games.hangman;
 //package com.xid_studios.java.game.hangman;
 //
 //import java.io.BufferedReader;

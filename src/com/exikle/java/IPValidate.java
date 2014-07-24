@@ -1,4 +1,5 @@
 package com.exikle.java;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,7 +17,8 @@ public class IPValidate {
 		// final String ip = "22.2222.22.2";//invalid IP
 		final String ip = "127.0.0.1";// valid IP
 		Matcher matcher = IPADDRESS_PATTERN.matcher(ip);
-		System.out.println(ip + " matches format?: " + matcher.matches());
+		System.out.println(ip + " matches format?: "
+				+ matcher.matches());
 	}
 
 }

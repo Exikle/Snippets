@@ -21,34 +21,48 @@ import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class FButton extends JButton implements Runnable {
+
 	protected Shape insideShape;
+
 	protected Shape insideBorder;
+
 	protected Shape base;
 
 	int angleForward = 0;
+
 	int angleBackward = 90;
 
 	final BasicStroke BS1 = new BasicStroke(12.5f);
+
 	final BasicStroke BS2 = new BasicStroke(8.0f);
+
 	final BasicStroke BS3 = new BasicStroke(1.5f);
+
 	final BasicStroke BS4 = new BasicStroke(9.5f);
 
 	protected final Color ICE_BLUE = new Color(122, 189, 255);
-	protected final Color FOCUS_COLOR = Color.GREEN;// color when focused
-	protected final Color ACTION_COLOR = Color.WHITE;// color bg turns on click
-	protected final Color ROLLOVER_COLOR = Color.RED;// rollover color
-	protected final Color BG_COLOR = new Color(250, 250, 250);// rollover color
-	// protected final Color ICE_BLUE = new Color(122, 189, 255);
-	protected final GradientPaint BORDER_GRADIENT = new GradientPaint(0, 0,
-			Color.LIGHT_GRAY, 80, 85, ICE_BLUE, false);
 
-	GradientPaint gp1 = new GradientPaint(0, 0, Color.LIGHT_GRAY, 80, 85,
-			ICE_BLUE, false);
+	protected final Color FOCUS_COLOR = Color.GREEN;// color when focused
+
+	protected final Color ACTION_COLOR = Color.WHITE;// color bg turns on click
+
+	protected final Color ROLLOVER_COLOR = Color.RED;// rollover color
+
+	protected final Color BG_COLOR = new Color(250, 250, 250);// rollover color
+
+	// protected final Color ICE_BLUE = new Color(122, 189, 255);
+	protected final GradientPaint BORDER_GRADIENT = new GradientPaint(
+			0, 0, Color.LIGHT_GRAY, 80, 85, ICE_BLUE, false);
+
+	GradientPaint gp1 = new GradientPaint(0, 0, Color.LIGHT_GRAY, 80,
+			85, ICE_BLUE, false);
+
 	int radius = Math.min(getWidth(), getHeight()) + 1;
 
 	RadialGradientPaint rgp1 = new RadialGradientPaint(new Point(
-			getWidth() / 2, getWidth() / 2), getWidth()+1, new float[] { 0.1f,
-			.55f }, new Color[] { Color.GRAY, ICE_BLUE });
+			getWidth() / 2, getWidth() / 2), getWidth() + 1,
+			new float[] { 0.1f, .55f }, new Color[] { Color.GRAY,
+					ICE_BLUE });
 
 	protected static final int focusstroke = 2;
 
@@ -108,17 +122,17 @@ public class FButton extends JButton implements Runnable {
 
 		// g2.fillRect(0, 0, getWidth(), getWidth());
 
-		 if (getModel().isArmed()) {
-		 g2.setColor(ACTION_COLOR);
-		 g2.fill(insideShape);
-		 } else if (isRolloverEnabled() && getModel().isRollover()) {
-		 paintFocusAndRollover(g2, ROLLOVER_COLOR);
-		 } else if (hasFocus()) {
-		 paintFocusAndRollover(g2, FOCUS_COLOR);
-		 } else {
-		 g2.setColor(getBackground());
-		 g2.fill(insideBorder);
-		 }
+		if (getModel().isArmed()) {
+			g2.setColor(ACTION_COLOR);
+			g2.fill(insideShape);
+		} else if (isRolloverEnabled() && getModel().isRollover()) {
+			paintFocusAndRollover(g2, ROLLOVER_COLOR);
+		} else if (hasFocus()) {
+			paintFocusAndRollover(g2, FOCUS_COLOR);
+		} else {
+			g2.setColor(getBackground());
+			g2.fill(insideBorder);
+		}
 		g2.setColor(getBackground());
 
 		super.paintComponent(g2);
@@ -136,21 +150,21 @@ public class FButton extends JButton implements Runnable {
 
 		g2.setStroke(BS2);
 		g2.setColor(ICE_BLUE);
-		g2.draw(new Arc2D.Double(5, 3, getWidth() - 10, getWidth() - 10,
-				angleForward, 90, Arc2D.OPEN));
+		g2.draw(new Arc2D.Double(5, 3, getWidth() - 10,
+				getWidth() - 10, angleForward, 90, Arc2D.OPEN));
 		g2.setStroke(BS3);
 		g2.setColor(Color.GRAY);
-		g2.draw(new Arc2D.Double(5, 3, getWidth() - 10, getWidth() - 10,
-				angleForward, 90, Arc2D.OPEN));
+		g2.draw(new Arc2D.Double(5, 3, getWidth() - 10,
+				getWidth() - 10, angleForward, 90, Arc2D.OPEN));
 
 		g2.setStroke(BS1);
 		g2.setColor(Color.GRAY);
-		g2.draw(new Arc2D.Double(5, 5, getWidth() - 10, getWidth() - 10,
-				angleBackward, 90, Arc2D.OPEN));
+		g2.draw(new Arc2D.Double(5, 5, getWidth() - 10,
+				getWidth() - 10, angleBackward, 90, Arc2D.OPEN));
 		g2.setStroke(BS3);
 		g2.setColor(ICE_BLUE);
-		g2.draw(new Arc2D.Double(5, 5, getWidth() - 10, getWidth() - 10,
-				angleBackward, 90, Arc2D.OPEN));
+		g2.draw(new Arc2D.Double(5, 5, getWidth() - 10,
+				getWidth() - 10, angleBackward, 90, Arc2D.OPEN));
 
 		g2.setStroke(new BasicStroke(1.5f));
 	}
@@ -160,6 +174,7 @@ public class FButton extends JButton implements Runnable {
 		int delay = 0, period = 50;
 		Timer t = new Timer();
 		t.scheduleAtFixedRate(new TimerTask() {
+
 			@Override
 			public void run() {
 				angleForward += 10;

@@ -1,16 +1,33 @@
 package com.exikle.java.interfaces;
 
-
-import java.awt.geom.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Insets;
+import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.Stroke;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.geom.Area;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-import com.exikle.java.interfaces.button.*;
+import com.exikle.java.interfaces.button.FButton;
+import com.exikle.java.interfaces.button.FButtonOriginal;
 
 /**
  * This is example code. Feel free to copy it.
@@ -20,35 +37,46 @@ import com.exikle.java.interfaces.button.*;
  */
 
 @SuppressWarnings("serial")
-public class ButtonTester extends JButton implements ComponentListener,
-		KeyListener {
+public class ButtonTester extends JButton implements
+		ComponentListener, KeyListener {
 
 	protected static final int DEFAULT_WIDTH = 150;
+
 	protected static final int DEFAULT_HEIGHT = 50;
 
-	protected static final Insets INSETS_MARGIN = new Insets(2, 5, 2, 5);
+	protected static final Insets INSETS_MARGIN = new Insets(2, 5, 2,
+			5);
 
 	protected static final int BORDER_WIDTH = 5;
 
 	protected double m_dWidthFill = 0d;
+
 	protected double m_dHeightFill = 0d;
 
 	protected Shape m_shape = null;
+
 	protected Area m_areaFill = null;
+
 	protected Area m_areaDraw = null;
 
 	protected RoundRectangle2D m_rrect2dFill = null;
+
 	protected Rectangle2D m_rect2dAFill = null;
+
 	protected Rectangle2D m_rect2dBFill = null;
 
 	protected double m_dWidthDraw = 0d;
+
 	protected double m_dHeightDraw = 0d;
 
 	protected RoundRectangle2D m_rrect2dDraw = null;
+
 	protected Rectangle2D m_rect2dADraw = null;
+
 	protected Rectangle2D m_rect2dBDraw = null;
 
 	protected int m_nStringWidthMax = 0;
+
 	protected int m_nMinWidth = 0;
 
 	// //////////////////////////////////////////////
@@ -85,7 +113,8 @@ public class ButtonTester extends JButton implements ComponentListener,
 		int nWidth = Math.max(
 				m_nMinWidth,
 				m_nStringWidthMax + this.getMargin().left
-						+ this.getInsets().left + this.getMargin().right
+						+ this.getInsets().left
+						+ this.getMargin().right
 						+ this.getInsets().right);
 
 		this.setPreferredSize(new Dimension(nWidth, DEFAULT_HEIGHT));
@@ -107,8 +136,10 @@ public class ButtonTester extends JButton implements ComponentListener,
 	public void setButtonText(String strText) {
 		super.setText(strText);
 
-		int nWidth = Math.max(m_nMinWidth, m_nStringWidthMax
-				+ this.getInsets().left + this.getInsets().right);
+		int nWidth = Math.max(
+				m_nMinWidth,
+				m_nStringWidthMax + this.getInsets().left
+						+ this.getInsets().right);
 		int nHeight = Math.max(0, this.getPreferredSize().height);
 		this.setPreferredSize(new Dimension(nWidth, nHeight));
 
@@ -134,15 +165,18 @@ public class ButtonTester extends JButton implements ComponentListener,
 		double dArcLengthFill = Math.min(m_dWidthFill, m_dHeightFill);
 		double dOffsetFill = dArcLengthFill / 2;
 
-		m_rrect2dFill = new RoundRectangle2D.Double(0d, 0d, m_dWidthFill,
-				m_dHeightFill, dArcLengthFill, dArcLengthFill);
+		m_rrect2dFill = new RoundRectangle2D.Double(0d, 0d,
+				m_dWidthFill, m_dHeightFill, dArcLengthFill,
+				dArcLengthFill);
 		// WARNING: arclength and archeight are divided by 2
 		// when they get into the roundedrectangle shape
 
-		m_rect2dAFill = new Rectangle2D.Double(0d, dOffsetFill, m_dWidthFill
-				- dOffsetFill, m_dHeightFill - dOffsetFill);
-		m_rect2dBFill = new Rectangle2D.Double(dOffsetFill, 0d, m_dWidthFill
-				- dOffsetFill, m_dHeightFill - dOffsetFill);
+		m_rect2dAFill = new Rectangle2D.Double(0d, dOffsetFill,
+				m_dWidthFill - dOffsetFill, m_dHeightFill
+						- dOffsetFill);
+		m_rect2dBFill = new Rectangle2D.Double(dOffsetFill, 0d,
+				m_dWidthFill - dOffsetFill, m_dHeightFill
+						- dOffsetFill);
 
 		m_areaFill = new Area(m_rrect2dFill);
 		m_areaFill.add(new Area(m_rect2dAFill));
@@ -153,17 +187,20 @@ public class ButtonTester extends JButton implements ComponentListener,
 		double dArcLengthDraw = Math.min(m_dWidthDraw, m_dHeightDraw);
 		double dOffsetDraw = dArcLengthDraw / 2;
 
-		m_rrect2dDraw = new RoundRectangle2D.Double((BORDER_WIDTH - 1) / 2,
-				(BORDER_WIDTH - 1) / 2, m_dWidthDraw, m_dHeightDraw,
-				dArcLengthDraw, dArcLengthDraw);
+		m_rrect2dDraw = new RoundRectangle2D.Double(
+				(BORDER_WIDTH - 1) / 2, (BORDER_WIDTH - 1) / 2,
+				m_dWidthDraw, m_dHeightDraw, dArcLengthDraw,
+				dArcLengthDraw);
 
-		m_rect2dADraw = new Rectangle2D.Double((BORDER_WIDTH - 1) / 2,
-				dOffsetDraw + (BORDER_WIDTH - 1) / 2, m_dWidthDraw
+		m_rect2dADraw = new Rectangle2D.Double(
+				(BORDER_WIDTH - 1) / 2, dOffsetDraw
+						+ (BORDER_WIDTH - 1) / 2, m_dWidthDraw
 						- dOffsetDraw, m_dHeightDraw - dOffsetDraw);
 
-		m_rect2dBDraw = new Rectangle2D.Double(dOffsetDraw + (BORDER_WIDTH - 1)
-				/ 2, (BORDER_WIDTH - 1) / 2, m_dWidthDraw - dOffsetDraw,
-				m_dHeightDraw - dOffsetDraw);
+		m_rect2dBDraw = new Rectangle2D.Double(dOffsetDraw
+				+ (BORDER_WIDTH - 1) / 2, (BORDER_WIDTH - 1) / 2,
+				m_dWidthDraw - dOffsetDraw, m_dHeightDraw
+						- dOffsetDraw);
 
 		m_areaDraw = new Area(m_rrect2dDraw);
 		m_areaDraw.add(new Area(m_rect2dADraw));
@@ -171,6 +208,7 @@ public class ButtonTester extends JButton implements ComponentListener,
 	}
 
 	// //////////////////////////////////////////////
+	@Override
 	protected void paintComponent(Graphics g) {
 
 		Graphics2D g2 = (Graphics2D) g;
@@ -196,6 +234,7 @@ public class ButtonTester extends JButton implements ComponentListener,
 	}
 
 	// //////////////////////////////////////////////
+	@Override
 	protected void paintBorder(Graphics g) {
 
 		Graphics2D g2 = (Graphics2D) g;
@@ -208,8 +247,8 @@ public class ButtonTester extends JButton implements ComponentListener,
 		g2.setColor(Color.black);
 
 		Stroke strokeOld = g2.getStroke();
-		g2.setStroke(new BasicStroke(BORDER_WIDTH, BasicStroke.CAP_ROUND,
-				BasicStroke.JOIN_ROUND));
+		g2.setStroke(new BasicStroke(BORDER_WIDTH,
+				BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 		g2.draw(m_areaDraw);
 
 		if (this.hasFocus()) {
@@ -221,10 +260,12 @@ public class ButtonTester extends JButton implements ComponentListener,
 	}
 
 	// //////////////////////////////////////////////
+	@Override
 	public boolean contains(int nX, int nY) {
-		if (null == m_shape || m_shape.getBounds().equals(getBounds())) {
-			m_shape = new Rectangle2D.Float(0, 0, this.getBounds().width,
-					this.getBounds().height);
+		if (null == m_shape
+				|| m_shape.getBounds().equals(getBounds())) {
+			m_shape = new Rectangle2D.Float(0, 0,
+					this.getBounds().width, this.getBounds().height);
 		}
 		return m_shape.contains(nX, nY);
 	}
@@ -232,6 +273,7 @@ public class ButtonTester extends JButton implements ComponentListener,
 	// //////////////////////////////////////////////
 	// //////////////////////////////////////////////
 	// Needed if we want this button to resize
+	@Override
 	public void componentResized(ComponentEvent e) {
 		m_shape = new Rectangle2D.Float(0, 0, this.getBounds().width,
 				this.getBounds().height);
@@ -248,50 +290,49 @@ public class ButtonTester extends JButton implements ComponentListener,
 	};
 
 	// //////////////////////////////////////////////
-	public void componentHidden(ComponentEvent e) {
-	};
+	@Override
+	public void componentHidden(ComponentEvent e) {};
 
-	public void componentMoved(ComponentEvent e) {
-	};
+	@Override
+	public void componentMoved(ComponentEvent e) {};
 
-	public void componentShown(ComponentEvent e) {
-	};
+	@Override
+	public void componentShown(ComponentEvent e) {};
 
 	// //////////////////////////////////////////////
 	// //////////////////////////////////////////////
 	// This is so the button is triggered when it has focus
 	// and we press the Enter key.
+	@Override
 	public void keyPressed(KeyEvent e) {
-		if (e.getSource() == this && e.getKeyCode() == KeyEvent.VK_ENTER) {
+		if (e.getSource() == this
+				&& e.getKeyCode() == KeyEvent.VK_ENTER) {
 			this.doClick();
 		}
 	}
 
 	// //////////////////////////////////////////////
-	public void keyReleased(KeyEvent e) {
-	}
+	@Override
+	public void keyReleased(KeyEvent e) {}
 
-	public void keyTyped(KeyEvent e) {
-	}
+	@Override
+	public void keyTyped(KeyEvent e) {}
 
-	// //////////////////////////////////////////////
-	// //////////////////////////////////////////////
-	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Button Tester");
 
 		frame.getContentPane().setLayout(new FlowLayout());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		FButton btn = new FButton("fkjandlkjnaffffffffffffdaw");		
-		
+		FButton btn = new FButton("fkjandlkjnaffffffffffffdaw");
+
 		// frame.getContentPane().add(new ButtonTester(""));
-//		frame.getContentPane().add(new CircleButton("%$#%#%#%GSDFS"));
+		// frame.getContentPane().add(new CircleButton("%$#%#%#%GSDFS"));
 		frame.getContentPane().add(btn);
 		frame.getContentPane().add(new FButtonOriginal("Hello"));
 
 		frame.pack();
 		frame.setVisible(true);
 
-		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

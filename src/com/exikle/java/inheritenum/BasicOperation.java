@@ -3,24 +3,28 @@ package com.exikle.java.inheritenum;
 public enum BasicOperation implements Operation {
 	PLUS("+") {
 
+		@Override
 		public double apply(double x, double y) {
 			return x + y;
 		}
 	},
 	MINUS("-") {
 
+		@Override
 		public double apply(double x, double y) {
 			return x - y;
 		}
 	},
 	MULTIPLY("*") {
 
+		@Override
 		public double apply(double x, double y) {
 			return x * y;
 		}
 	},
 	DIVIDE("/") {
 
+		@Override
 		public double apply(double x, double y) {
 			return x / y;
 		}

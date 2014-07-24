@@ -1,0 +1,14 @@
+Cat
+Dog
+Lion
+Eagle
+Horse
+Pig
+Koala 
+Monkey
+Bear
+Mouse
+Parakeet
+Chinchilla
+Alligator
+Rat

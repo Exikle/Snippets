@@ -8,9 +8,13 @@ import javax.swing.DefaultButtonModel;
 import javax.swing.Icon;
 import javax.swing.JButton;
 
+@SuppressWarnings("serial")
 class HangmanButton extends JButton {
+
 	private static final Icon noIcon = null;
+
 	private static final String noString = null;
+
 	private Font dFont = null;
 
 	public HangmanButton() {

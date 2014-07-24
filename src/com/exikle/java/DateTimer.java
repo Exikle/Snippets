@@ -18,6 +18,7 @@ import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 import javax.swing.text.DateFormatter;
 
+@SuppressWarnings("serial")
 public class DateTimer extends JFrame {
 
 	private JFormattedTextField finishtime;
@@ -32,6 +33,7 @@ public class DateTimer extends JFrame {
 	public static void main(String args[]) {
 		EventQueue.invokeLater(new Runnable() {
 
+			@Override
 			public void run() {
 				try {
 					DateTimer frame = new DateTimer();
@@ -62,6 +64,7 @@ public class DateTimer extends JFrame {
 				new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH)));
 		finishtime.addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(final ActionEvent e) {
 
 			}
@@ -74,6 +77,7 @@ public class DateTimer extends JFrame {
 		final JButton startButton = new JButton();
 		startButton.addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(final ActionEvent e) {
 				startCount();
 			}
@@ -101,6 +105,7 @@ public class DateTimer extends JFrame {
 	protected void startCount() {
 		Timer t = new javax.swing.Timer(1000, new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				Date today = new Date();
 				Date endCount = (Date) finishtime.getValue();

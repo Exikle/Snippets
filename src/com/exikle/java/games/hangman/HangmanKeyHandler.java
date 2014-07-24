@@ -1,4 +1,4 @@
-package com.exikle.java.hangman;
+package com.exikle.java.games.hangman;
 //
 // import java.awt.event.KeyEvent;
 // import java.awt.event.KeyListener;
