@@ -112,7 +112,6 @@ public class DateTimer extends JFrame {
 				// TODO Auto-generated method stub
 				long date = endCount.getTime() - today.getTime();
 				if (date <= 0) {
-
 					countLabel.setText("Countdown FINISHED!!!!");
 				} else {
 					long day = date / (24 * 3600 * 1000);
